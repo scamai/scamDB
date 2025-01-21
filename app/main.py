@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 load_dotenv()
-
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+LOGGER = logging.getLogger(__name__)
 from fastapi import FastAPI , Depends
 from .core.config import settings
 from .core.dependencies import db

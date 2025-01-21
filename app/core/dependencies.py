@@ -1,8 +1,10 @@
-
 from motor.motor_asyncio import AsyncIOMotorClient
 from typing import Optional
 from ..models.models import indexes
 from .config import settings
+import logging
+
+LOGGER = logging.getLogger(__name__)
 
 class Database:
     def __init__(self):
@@ -22,9 +24,9 @@ class Database:
                     unique=index.get("unique", False),
                     background=True
                 )
-            print("Successfully connected to MongoDB!")
+            LOGGER.info("Successfully connected to MongoDB!")
         except Exception as e:
-            print(f"Error connecting to MongoDB: {e}")
+            LOGGER.error(f"Error connecting to MongoDB: {e}")
             raise e
 
     async def close_mongodb(self):
